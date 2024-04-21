@@ -101,7 +101,7 @@ class SensorBase(SQLModel):
     description: str
 
 
-class Sensor(SensorBase):
+class Sensor(SensorBase, table=True):
     id: int | None = Field(default=None, primary_key=True)
     owner_id: int | None = Field(default=None, foreign_key="user.id", nullable=False)
     owner: User | None = Relationship(back_populates="sensors")

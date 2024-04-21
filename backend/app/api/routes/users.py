@@ -13,6 +13,7 @@ from app.core.config import settings
 from app.core.security import get_password_hash, verify_password
 from app.models import (
     Item,
+    Sensor,
     Message,
     UpdatePassword,
     User,
@@ -215,6 +216,7 @@ def delete_user(
         )
 
     statement = delete(Item).where(col(Item.owner_id) == user_id)
+    statement = delete(Sensor).where(col(Sensor.owner_id) == user_id)
     session.exec(statement)  # type: ignore
     session.delete(user)
     session.commit()
