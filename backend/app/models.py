@@ -45,6 +45,7 @@ class User(UserBase, table=True):
     id: int | None = Field(default=None, primary_key=True)
     hashed_password: str
     items: list["Item"] = Relationship(back_populates="owner")
+    sensors: list["Sensor"] = Relationship(back_populates="owner")
 
 
 # Properties to return via API, id is always required
@@ -89,6 +90,38 @@ class ItemPublic(ItemBase):
 
 class ItemsPublic(SQLModel):
     data: list[ItemPublic]
+    count: int
+
+
+###### Sensors
+class SensorBase(SQLModel):
+    name: str
+    measurement: str
+    location: str
+    description: str
+
+
+class Sensor(SensorBase):
+    id: int | None = Field(default=None, primary_key=True)
+    owner_id: int | None = Field(default=None, foreign_key="user.id", nullable=False)
+    owner: User | None = Relationship(back_populates="sensors")
+
+
+class SensorCreate(SensorBase):
+    pass
+
+
+class SensorUpdate(SensorBase):
+    pass
+
+
+class SensorPublic(SensorBase):
+    id: int
+    owner_id: int
+
+
+class SensorsPublic(SQLModel):
+    data: list[SensorPublic]
     count: int
 
 
