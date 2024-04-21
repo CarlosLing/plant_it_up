@@ -9,16 +9,49 @@ import {
 import { BsThreeDotsVertical } from "react-icons/bs"
 import { FiEdit, FiTrash } from "react-icons/fi"
 
-import type { ItemPublic, UserPublic } from "../../client"
+import type { ItemPublic, UserPublic, SensorPublic } from "../../client"
 import EditUser from "../Admin/EditUser"
 import EditItem from "../Items/EditItem"
+import EditSensor from "../Sensors/EditSensor"
 import Delete from "./DeleteAlert"
 
 interface ActionsMenuProps {
   type: string
-  value: ItemPublic | UserPublic
+  value: ItemPublic | UserPublic | SensorPublic
   disabled?: boolean
 }
+
+function renderEditComponent(type: string, value: any, isOpen: boolean, onClose: () => void) {
+  switch (type) {
+    case "User":
+      return (
+        <EditUser
+          user={value as UserPublic}
+          isOpen={isOpen}
+          onClose={onClose}
+        />
+      );
+    case "Item":
+      return (
+        <EditItem
+          item={value as ItemPublic}
+          isOpen={isOpen}
+          onClose={onClose}
+        />
+      );
+    case "Sensor":
+      return (
+        <EditSensor
+          sensor={value as SensorPublic}
+          isOpen={isOpen}
+          onClose={onClose}
+        />
+      );
+    default:
+      return null; // Or handle unexpected types appropriately
+  }
+}
+
 
 const ActionsMenu = ({ type, value, disabled }: ActionsMenuProps) => {
   const editUserModal = useDisclosure()
@@ -48,19 +81,7 @@ const ActionsMenu = ({ type, value, disabled }: ActionsMenuProps) => {
             Delete {type}
           </MenuItem>
         </MenuList>
-        {type === "User" ? (
-          <EditUser
-            user={value as UserPublic}
-            isOpen={editUserModal.isOpen}
-            onClose={editUserModal.onClose}
-          />
-        ) : (
-          <EditItem
-            item={value as ItemPublic}
-            isOpen={editUserModal.isOpen}
-            onClose={editUserModal.onClose}
-          />
-        )}
+        {renderEditComponent(type, value, editUserModal.isOpen, editUserModal.onClose)}
         <Delete
           type={type}
           id={value.id}

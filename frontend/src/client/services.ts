@@ -2,24 +2,24 @@ import type { CancelablePromise } from './core/CancelablePromise';
 import { OpenAPI } from './core/OpenAPI';
 import { request as __request } from './core/request';
 
-import type { Body_login_login_access_token,Message,NewPassword,Token,UserPublic,UpdatePassword,UserCreate,UserRegister,UsersPublic,UserUpdate,UserUpdateMe,ItemCreate,ItemPublic,ItemsPublic,ItemUpdate } from './models';
+import type { Body_login_login_access_token, Message, NewPassword, Token, UserPublic, UpdatePassword, UserCreate, UserRegister, UsersPublic, UserUpdate, UserUpdateMe, ItemCreate, ItemPublic, ItemsPublic, ItemUpdate, SensorCreate, SensorPublic, SensorsPublic, SensorUpdate } from './models';
 
 export type TDataLoginAccessToken = {
-                formData: Body_login_login_access_token
-                
-            }
+	formData: Body_login_login_access_token
+
+}
 export type TDataRecoverPassword = {
-                email: string
-                
-            }
+	email: string
+
+}
 export type TDataResetPassword = {
-                requestBody: NewPassword
-                
-            }
+	requestBody: NewPassword
+
+}
 export type TDataRecoverPasswordHtmlContent = {
-                email: string
-                
-            }
+	email: string
+
+}
 
 export class LoginService {
 
@@ -31,8 +31,8 @@ export class LoginService {
 	 */
 	public static loginAccessToken(data: TDataLoginAccessToken): CancelablePromise<Token> {
 		const {
-formData,
-} = data;
+			formData,
+		} = data;
 		return __request(OpenAPI, {
 			method: 'POST',
 			url: '/api/v1/login/access-token',
@@ -51,7 +51,7 @@ formData,
 	 * @throws ApiError
 	 */
 	public static testToken(): CancelablePromise<UserPublic> {
-				return __request(OpenAPI, {
+		return __request(OpenAPI, {
 			method: 'POST',
 			url: '/api/v1/login/test-token',
 		});
@@ -65,8 +65,8 @@ formData,
 	 */
 	public static recoverPassword(data: TDataRecoverPassword): CancelablePromise<Message> {
 		const {
-email,
-} = data;
+			email,
+		} = data;
 		return __request(OpenAPI, {
 			method: 'POST',
 			url: '/api/v1/password-recovery/{email}',
@@ -87,8 +87,8 @@ email,
 	 */
 	public static resetPassword(data: TDataResetPassword): CancelablePromise<Message> {
 		const {
-requestBody,
-} = data;
+			requestBody,
+		} = data;
 		return __request(OpenAPI, {
 			method: 'POST',
 			url: '/api/v1/reset-password/',
@@ -108,8 +108,8 @@ requestBody,
 	 */
 	public static recoverPasswordHtmlContent(data: TDataRecoverPasswordHtmlContent): CancelablePromise<string> {
 		const {
-email,
-} = data;
+			email,
+		} = data;
 		return __request(OpenAPI, {
 			method: 'POST',
 			url: '/api/v1/password-recovery-html-content/{email}',
@@ -125,39 +125,39 @@ email,
 }
 
 export type TDataReadUsers = {
-                limit?: number
-skip?: number
-                
-            }
+	limit?: number
+	skip?: number
+
+}
 export type TDataCreateUser = {
-                requestBody: UserCreate
-                
-            }
+	requestBody: UserCreate
+
+}
 export type TDataUpdateUserMe = {
-                requestBody: UserUpdateMe
-                
-            }
+	requestBody: UserUpdateMe
+
+}
 export type TDataUpdatePasswordMe = {
-                requestBody: UpdatePassword
-                
-            }
+	requestBody: UpdatePassword
+
+}
 export type TDataRegisterUser = {
-                requestBody: UserRegister
-                
-            }
+	requestBody: UserRegister
+
+}
 export type TDataReadUserById = {
-                userId: number
-                
-            }
+	userId: number
+
+}
 export type TDataUpdateUser = {
-                requestBody: UserUpdate
-userId: number
-                
-            }
+	requestBody: UserUpdate
+	userId: number
+
+}
 export type TDataDeleteUser = {
-                userId: number
-                
-            }
+	userId: number
+
+}
 
 export class UsersService {
 
@@ -169,9 +169,9 @@ export class UsersService {
 	 */
 	public static readUsers(data: TDataReadUsers = {}): CancelablePromise<UsersPublic> {
 		const {
-limit = 100,
-skip = 0,
-} = data;
+			limit = 100,
+			skip = 0,
+		} = data;
 		return __request(OpenAPI, {
 			method: 'GET',
 			url: '/api/v1/users/',
@@ -192,8 +192,8 @@ skip = 0,
 	 */
 	public static createUser(data: TDataCreateUser): CancelablePromise<UserPublic> {
 		const {
-requestBody,
-} = data;
+			requestBody,
+		} = data;
 		return __request(OpenAPI, {
 			method: 'POST',
 			url: '/api/v1/users/',
@@ -212,7 +212,7 @@ requestBody,
 	 * @throws ApiError
 	 */
 	public static readUserMe(): CancelablePromise<UserPublic> {
-				return __request(OpenAPI, {
+		return __request(OpenAPI, {
 			method: 'GET',
 			url: '/api/v1/users/me',
 		});
@@ -226,8 +226,8 @@ requestBody,
 	 */
 	public static updateUserMe(data: TDataUpdateUserMe): CancelablePromise<UserPublic> {
 		const {
-requestBody,
-} = data;
+			requestBody,
+		} = data;
 		return __request(OpenAPI, {
 			method: 'PATCH',
 			url: '/api/v1/users/me',
@@ -247,8 +247,8 @@ requestBody,
 	 */
 	public static updatePasswordMe(data: TDataUpdatePasswordMe): CancelablePromise<Message> {
 		const {
-requestBody,
-} = data;
+			requestBody,
+		} = data;
 		return __request(OpenAPI, {
 			method: 'PATCH',
 			url: '/api/v1/users/me/password',
@@ -268,8 +268,8 @@ requestBody,
 	 */
 	public static registerUser(data: TDataRegisterUser): CancelablePromise<UserPublic> {
 		const {
-requestBody,
-} = data;
+			requestBody,
+		} = data;
 		return __request(OpenAPI, {
 			method: 'POST',
 			url: '/api/v1/users/signup',
@@ -289,8 +289,8 @@ requestBody,
 	 */
 	public static readUserById(data: TDataReadUserById): CancelablePromise<UserPublic> {
 		const {
-userId,
-} = data;
+			userId,
+		} = data;
 		return __request(OpenAPI, {
 			method: 'GET',
 			url: '/api/v1/users/{user_id}',
@@ -311,9 +311,9 @@ userId,
 	 */
 	public static updateUser(data: TDataUpdateUser): CancelablePromise<UserPublic> {
 		const {
-requestBody,
-userId,
-} = data;
+			requestBody,
+			userId,
+		} = data;
 		return __request(OpenAPI, {
 			method: 'PATCH',
 			url: '/api/v1/users/{user_id}',
@@ -336,8 +336,8 @@ userId,
 	 */
 	public static deleteUser(data: TDataDeleteUser): CancelablePromise<Message> {
 		const {
-userId,
-} = data;
+			userId,
+		} = data;
 		return __request(OpenAPI, {
 			method: 'DELETE',
 			url: '/api/v1/users/{user_id}',
@@ -353,9 +353,9 @@ userId,
 }
 
 export type TDataTestEmail = {
-                emailTo: string
-                
-            }
+	emailTo: string
+
+}
 
 export class UtilsService {
 
@@ -367,8 +367,8 @@ export class UtilsService {
 	 */
 	public static testEmail(data: TDataTestEmail): CancelablePromise<Message> {
 		const {
-emailTo,
-} = data;
+			emailTo,
+		} = data;
 		return __request(OpenAPI, {
 			method: 'POST',
 			url: '/api/v1/utils/test-email/',
@@ -384,27 +384,27 @@ emailTo,
 }
 
 export type TDataReadItems = {
-                limit?: number
-skip?: number
-                
-            }
+	limit?: number
+	skip?: number
+
+}
 export type TDataCreateItem = {
-                requestBody: ItemCreate
-                
-            }
+	requestBody: ItemCreate
+
+}
 export type TDataReadItem = {
-                id: number
-                
-            }
+	id: number
+
+}
 export type TDataUpdateItem = {
-                id: number
-requestBody: ItemUpdate
-                
-            }
+	id: number
+	requestBody: ItemUpdate
+
+}
 export type TDataDeleteItem = {
-                id: number
-                
-            }
+	id: number
+
+}
 
 export class ItemsService {
 
@@ -416,9 +416,9 @@ export class ItemsService {
 	 */
 	public static readItems(data: TDataReadItems = {}): CancelablePromise<ItemsPublic> {
 		const {
-limit = 100,
-skip = 0,
-} = data;
+			limit = 100,
+			skip = 0,
+		} = data;
 		return __request(OpenAPI, {
 			method: 'GET',
 			url: '/api/v1/items/',
@@ -439,8 +439,8 @@ skip = 0,
 	 */
 	public static createItem(data: TDataCreateItem): CancelablePromise<ItemPublic> {
 		const {
-requestBody,
-} = data;
+			requestBody,
+		} = data;
 		return __request(OpenAPI, {
 			method: 'POST',
 			url: '/api/v1/items/',
@@ -460,8 +460,8 @@ requestBody,
 	 */
 	public static readItem(data: TDataReadItem): CancelablePromise<ItemPublic> {
 		const {
-id,
-} = data;
+			id,
+		} = data;
 		return __request(OpenAPI, {
 			method: 'GET',
 			url: '/api/v1/items/{id}',
@@ -482,9 +482,9 @@ id,
 	 */
 	public static updateItem(data: TDataUpdateItem): CancelablePromise<ItemPublic> {
 		const {
-id,
-requestBody,
-} = data;
+			id,
+			requestBody,
+		} = data;
 		return __request(OpenAPI, {
 			method: 'PUT',
 			url: '/api/v1/items/{id}',
@@ -507,8 +507,8 @@ requestBody,
 	 */
 	public static deleteItem(data: TDataDeleteItem): CancelablePromise<Message> {
 		const {
-id,
-} = data;
+			id,
+		} = data;
 		return __request(OpenAPI, {
 			method: 'DELETE',
 			url: '/api/v1/items/{id}',
@@ -521,4 +521,78 @@ id,
 		});
 	}
 
+}
+
+export type TDataCreateSensor = {
+	requestBody: SensorCreate;
+};
+
+export type TDataReadSensor = {
+	id: number;
+};
+
+export type TDataUpdateSensor = {
+	id: number;
+	requestBody: SensorUpdate;
+};
+
+export type TDataDeleteSensor = {
+	id: number;
+};
+
+export type TDataListSensors = {
+	skip?: number;
+	limit?: number;
+};
+
+export class SensorService {
+	/** Create Sensor */
+	public static createSensor(data: TDataCreateSensor): CancelablePromise<SensorPublic> {
+		return __request(OpenAPI, {
+			method: 'POST',
+			url: '/api/v1/sensors/',
+			body: data.requestBody,
+			mediaType: 'application/json',
+			errors: { 422: 'Validation Error' },
+		});
+	}
+
+	/** Read Sensor by ID */
+	public static readSensor(data: TDataReadSensor): CancelablePromise<SensorPublic> {
+		return __request(OpenAPI, {
+			method: 'GET',
+			url: `/api/v1/sensors/${data.id}`,
+			errors: { 422: 'Validation Error' },
+		});
+	}
+
+	/** Update Sensor */
+	public static updateSensor(data: TDataUpdateSensor): CancelablePromise<SensorPublic> {
+		return __request(OpenAPI, {
+			method: 'PUT',
+			url: `/api/v1/sensors/${data.id}`,
+			body: data.requestBody,
+			mediaType: 'application/json',
+			errors: { 422: 'Validation Error' },
+		});
+	}
+
+	/** Delete Sensor */
+	public static deleteSensor(data: TDataDeleteSensor): CancelablePromise<Message> {
+		return __request(OpenAPI, {
+			method: 'DELETE',
+			url: `/api/v1/sensors/${data.id}`,
+			errors: { 422: 'Validation Error' },
+		});
+	}
+
+	/** List Sensors */
+	public static listSensors(data: TDataListSensors): CancelablePromise<SensorsPublic> {
+		return __request(OpenAPI, {
+			method: 'GET',
+			url: '/api/v1/sensors/',
+			query: { skip: data.skip, limit: data.limit },
+			errors: { 422: 'Validation Error' },
+		});
+	}
 }

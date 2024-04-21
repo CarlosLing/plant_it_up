@@ -43,6 +43,33 @@ export type ItemsPublic = {
 	count: number;
 };
 
+export type SensorCreate = {
+	name: string;
+	measurement: string;
+	location: string;
+	description?: string | null;
+};
+
+export type SensorPublic = {
+	id: number;
+	owner_id: number;
+	name: string;
+	measurement: string;
+	location: string;
+	description?: string | null;
+};
+
+export type SensorUpdate = {
+	name?: string | null;
+	measurement?: string | null;
+	location?: string | null;
+	description?: string | null;
+};
+
+export type SensorsPublic = {
+	data: Array<SensorPublic>;
+	count: number;
+};
 
 
 export type Message = {
