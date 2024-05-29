@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from sqlmodel import Field, Relationship, SQLModel
 
 
@@ -105,6 +107,7 @@ class Sensor(SensorBase, table=True):
     id: int | None = Field(default=None, primary_key=True)
     owner_id: int | None = Field(default=None, foreign_key="user.id", nullable=False)
     owner: User | None = Relationship(back_populates="sensors")
+    readings: list["Reading"] = Relationship(back_populates="sensor")
 
 
 class SensorCreate(SensorBase):
@@ -123,6 +126,18 @@ class SensorPublic(SensorBase):
 class SensorsPublic(SQLModel):
     data: list[SensorPublic]
     count: int
+
+
+### Sensor Readings
+class ReadingBase(SQLModel):
+    value: float
+    timestamp: datetime
+
+
+class Reading(ReadingBase, table=True):
+    id: int | None = Field(default=None, primary_key=True)
+    sensor_id: int | None = Field(default=None, foreign_key="sensor.id", nullable=False)
+    sensor: Sensor | None = Relationship(back_populates="readings")
 
 
 # Generic message
