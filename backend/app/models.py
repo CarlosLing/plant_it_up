@@ -131,13 +131,23 @@ class SensorsPublic(SQLModel):
 ### Sensor Readings
 class ReadingBase(SQLModel):
     value: float
-    timestamp: datetime
+    timestamp: datetime = Field(default_factory=datetime.utcnow)
 
 
 class Reading(ReadingBase, table=True):
     id: int | None = Field(default=None, primary_key=True)
     sensor_id: int | None = Field(default=None, foreign_key="sensor.id", nullable=False)
     sensor: Sensor | None = Relationship(back_populates="readings")
+
+
+class ReadingPublic(ReadingBase):
+    id: int
+    sensor_id: int
+
+
+class ReadingsPublic(SQLModel):
+    data: list[ReadingPublic]
+    count: int
 
 
 # Generic message
