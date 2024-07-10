@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import date, datetime
 
 from sqlmodel import Field, Relationship, SQLModel
 
@@ -147,6 +147,19 @@ class ReadingPublic(ReadingBase):
 
 class ReadingsPublic(SQLModel):
     data: list[ReadingPublic]
+    count: int
+
+
+### Sensor Statistics
+class SensorStatistics(SQLModel):
+    date: date
+    average: float
+    max: float
+    min: float
+
+
+class SensorStatisticsList(SQLModel):
+    data: list[SensorStatistics]
     count: int
 
 
